@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { getLaunches } from "../api/space";
 import { Link } from "react-router-dom";
 import RecentLaunchHistory from "./RecentLaunchHistory";
-import spaceXIntroVideo from "../assets/videos/SpaceXIntro.mp4"; // Import the video
+import spaceXIntroVideo from "../assets/videos/SpaceXintro.mp4"; 
 
 interface Launch {
   id: string;
