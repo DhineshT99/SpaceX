@@ -110,9 +110,6 @@ export default function Launches() {
                 />
                 <h3 className="text-2xl font-semibold mb-1">{launch.name}</h3>
                 <p className="text-sm text-gray-400 mb-2">
-                  Rocket: {launch.rocket || "N/A"}
-                </p>
-                <p className="text-sm text-gray-400 mb-2">
                   Date: {new Date(launch.date_utc).toLocaleDateString()}
                 </p>
                 <p className="text-gray-300 mb-3 line-clamp-3">

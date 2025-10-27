@@ -1,13 +1,9 @@
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { getLaunches } from "../api/space";
 import { Link } from "react-router-dom";
 import RecentLaunchHistory from "./RecentLaunchHistory";
-import bgImage1 from "../assets/background.jpg";
-import bgImage2 from "../assets/background-2.jpg";
-import bgImage3 from "../assets/background-3.jpg";
-import bgImage4 from "../assets/background-4.jpg";
-import bgImage5 from "../assets/background-5.jpg";
+import spaceXIntroVideo from "../assets/videos/SpaceXIntro.mp4"; // Import the video
 
 interface Launch {
   id: string;
@@ -27,22 +23,12 @@ export default function Home() {
   const [launches, setLaunches] = useState<Launch[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [currentBg, setCurrentBg] = useState(0);
-
-  const bgImages = [bgImage1, bgImage2, bgImage3, bgImage4, bgImage5];
 
   useEffect(() => {
     getLaunches()
       .then((res) => setLaunches(res.data.reverse().slice(0, 40)))
       .catch(() => setError("Failed to fetch launches."))
       .finally(() => setLoading(false));
-  }, []);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentBg((prev) => (prev + 1) % bgImages.length);
-    }, 7000);
-    return () => clearInterval(interval);
   }, []);
 
   if (loading)
@@ -98,17 +84,17 @@ export default function Home() {
   return (
     <div className="relative min-h-screen text-white overflow-hidden">
       <section className="relative h-[80vh] sm:h-[70vh] flex flex-col-reverse sm:flex-col items-end sm:items-start pb-10 sm:pb-20 overflow-hidden w-screen">
-        <AnimatePresence mode="wait">
-          <motion.img
-            key={currentBg}
-            src={bgImages[currentBg]}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 2 }}
-           className="absolute top-0 left-0 w-full h-full object-cover -z-10 brightness-75"
-          />
-        </AnimatePresence>
+        {/* Video Background */}
+        <video
+          className="absolute top-0 left-0 w-full h-full object-cover -z-10 brightness-75"
+          autoPlay
+          loop
+          muted
+          playsInline
+        >
+          <source src={spaceXIntroVideo} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
 
         <div className="relative z-10 p-4 sm:p-10 max-w-7xl mx-auto w-full text-center sm:text-left">
           <motion.h1

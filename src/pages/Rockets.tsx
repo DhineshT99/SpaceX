@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion"; 
+import { motion } from "framer-motion";
 import { getRockets } from "../api/space";
 
 interface Rocket {
@@ -62,7 +62,6 @@ export default function Rockets() {
 
   return (
     <div className="relative min-h-screen bg-black text-white overflow-hidden">
-      {/* Subtle background glow */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.05),transparent_60%),radial-gradient(circle_at_80%_80%,rgba(255,255,255,0.05),transparent_60%)] animate-[pulse_10s_infinite_alternate]" />
       <div className="absolute inset-0 bg-black opacity-90" />
 
@@ -90,7 +89,9 @@ export default function Rockets() {
         />
 
         {filteredRockets.length === 0 ? (
-          <p className="text-center text-gray-400 text-sm sm:text-base">No rockets found.</p>
+          <p className="text-center text-gray-400 text-sm sm:text-base">
+            No rockets found.
+          </p>
         ) : (
           <motion.div
             className="grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
@@ -106,7 +107,10 @@ export default function Rockets() {
                 className="bg-gray-800 rounded-xl overflow-hidden hover:shadow-[0_0_20px_rgba(255,255,255,0.5)] 
                 transition-shadow flex flex-col"
               >
-                <Link to={`/rockets/${rocket.id}`} className="flex flex-col h-full">
+                <Link
+                  to={`/rockets/${rocket.id}`}
+                  className="flex flex-col h-full"
+                >
                   {/* Image Display */}
                   {rocket.flickr_images?.length > 0 ? (
                     rocket.flickr_images.length === 1 ? (
@@ -148,10 +152,13 @@ export default function Rockets() {
                     </div>
                   )}
 
-                  {/* Text Section */}
                   <div className="p-3 sm:p-4 flex-1 flex flex-col justify-between">
-                    <h3 className="text-lg sm:text-xl font-bold mb-1">{rocket.name}</h3>
-                    <p className="text-xs sm:text-sm text-gray-400">{rocket.company}</p>
+                    <h3 className="text-lg sm:text-xl font-bold mb-1">
+                      {rocket.name}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-gray-400">
+                      {rocket.company}
+                    </p>
                   </div>
                 </Link>
               </motion.div>

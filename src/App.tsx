@@ -10,12 +10,9 @@ import Footer from "./components/Footer";
 export default function App() {
   return (
     <BrowserRouter>
-      {/* Header with sticky or responsive navbar */}
       <header className="mb-6 md:mb-12">
         <Navbar />
       </header>
-
-      {/* Main content container */}
       <main className="px-4 sm:px-6 md:px-12 lg:px-24">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -25,8 +22,6 @@ export default function App() {
           <Route path="/history" element={<History />} />
         </Routes>
       </main>
-
-      {/* Footer */}
       <footer className="mt-12 px-4 sm:px-6 md:px-12 lg:px-24">
         <Footer />
       </footer>
